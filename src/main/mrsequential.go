@@ -67,6 +67,7 @@ func main() {
 	//
 	i := 0
 	for i < len(intermediate) {
+		//merge start
 		j := i + 1
 		for j < len(intermediate) && intermediate[j].Key == intermediate[i].Key {
 			j++
@@ -75,6 +76,9 @@ func main() {
 		for k := i; k < j; k++ {
 			values = append(values, intermediate[k].Value)
 		}
+		//merge end
+
+		//reduce start
 		output := reducef(intermediate[i].Key, values)
 
 		// this is the correct format for each line of Reduce output.
@@ -86,10 +90,8 @@ func main() {
 	ofile.Close()
 }
 
-//
 // load the application Map and Reduce functions
 // from a plugin file, e.g. ../mrapps/wc.so
-//
 func loadPlugin(filename string) (func(string, string) []mr.KeyValue, func(string, []string) string) {
 	p, err := plugin.Open(filename)
 	if err != nil {
