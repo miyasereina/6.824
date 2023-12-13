@@ -8,7 +8,9 @@ import "net/http"
 
 type Coordinator struct {
 	// Your definitions here.
-
+	MapsPool    Map
+	ReducePool  Reduce
+	MiddleQueue chan KeyValue
 }
 
 // Your code here -- RPC handlers for the worker to call.
